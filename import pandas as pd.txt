@@ -1,0 +1,26 @@
+import pandas as pd
+
+
+def generate_signal(stock_df, ai_prob):
+
+    if stock_df is None or len(stock_df) < 30:
+        return "HOLD"
+
+    df = stock_df.copy()
+
+    df["MA5"] = df["Close"].rolling(5).mean()
+    df["MA20"] = df["Close"].rolling(20).mean()
+
+    ma5 = df["MA5"].iloc[-1]
+    ma20 = df["MA20"].iloc[-1]
+
+    vol_now = df["Volume"].iloc[-1]
+    vol_avg = df["Volume"].rolling(20).mean().iloc[-1]
+
+    if ai_prob > 0.60 and ma5 > ma20 and vol_now > vol_avg:
+        return "BUY"
+
+    if ai_prob < 0.45:
+        return "SELL"
+
+    return "HOLD"
