@@ -1,342 +1,220 @@
 /* ============================================================
    KDH AI QUANT TRADER — STARBUCKS PREMIUM DESIGN SYSTEM
-   Warm Craft · Deep Forest Green · Gold Accent · Refined
+   Deep Forest Green · Gold Accent · White Text
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
 /* ── CSS Variables ── */
 :root {
-  /* Starbucks Core */
-  --sb-espresso:     #1a0f0a;
-  --sb-roast:        #2c1810;
   --sb-forest-deep:  #00422a;
   --sb-forest:       #006241;
   --sb-forest-mid:   #1a7a52;
   --sb-forest-light: #2d9b6b;
-  --sb-sage:         #c8ddd2;
-  --sb-mint-faint:   #edf5f0;
 
-  /* Warm Neutrals */
-  --sb-cream:        #f5f0e8;
-  --sb-latte:        #ede6d8;
-  --sb-parchment:    #faf7f2;
-  --sb-oat:          #f0ebe0;
-  --sb-warm-gray:    #8a8378;
-  --sb-bark:         #5c4a3a;
-
-  /* Gold Accent */
-  --sb-gold-deep:    #a07820;
+  --sb-gold-deep:    #8c6a18;
   --sb-gold:         #c9973a;
   --sb-gold-light:   #e8bf6a;
-  --sb-gold-faint:   #f5e8c8;
 
-  /* Semantic */
-  --sb-up:           #2d7a4a;
-  --sb-down:         #c0392b;
-  --sb-up-bg:        rgba(45,122,74,0.10);
-  --sb-down-bg:      rgba(192,57,43,0.08);
+  --sb-white:        #ffffff;
+  --sb-white-80:     rgba(255,255,255,0.80);
+  --sb-white-55:     rgba(255,255,255,0.55);
+  --sb-white-30:     rgba(255,255,255,0.30);
 
-  /* Shadows */
-  --sb-shadow-sm:    0 2px 8px rgba(26,15,10,0.06), 0 1px 3px rgba(26,15,10,0.04);
-  --sb-shadow-md:    0 6px 24px rgba(26,15,10,0.10), 0 2px 8px rgba(26,15,10,0.06);
-  --sb-shadow-lg:    0 16px 48px rgba(26,15,10,0.14), 0 4px 16px rgba(26,15,10,0.08);
-  --sb-shadow-card:  0 1px 0 rgba(255,255,255,0.80) inset,
-                     0 6px 24px rgba(26,15,10,0.10);
+  --sb-up:           #5dd68c;
+  --sb-down:         #ff7b7b;
 
-  /* Geometry */
+  --sb-shadow-sm:    0 2px 8px rgba(0,0,0,0.15);
+  --sb-shadow-md:    0 6px 24px rgba(0,0,0,0.22);
+  --sb-shadow-lg:    0 16px 48px rgba(0,0,0,0.30);
+
   --sb-radius:       18px;
   --sb-radius-sm:    10px;
   --sb-radius-xs:    6px;
   --sb-radius-pill:  999px;
 }
 
-/* ── Reset & Base ── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; }
+/* ============================================================
+   BASE
+   ============================================================ */
 
+*, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
-body {
-  background-color: var(--sb-cream);
-  font-family: 'DM Sans', 'Noto Sans KR', sans-serif;
-  color: var(--sb-espresso);
-  font-size: 15px;
-  line-height: 1.70;
-  -webkit-font-smoothing: antialiased;
-
-  /* 크래프트 페이퍼 느낌의 레이어드 배경 */
+/* 앱 전체 배경 */
+.stApp {
+  background-color: var(--sb-forest-deep) !important;
   background-image:
-    radial-gradient(ellipse 100% 50% at 50% -10%,
-      rgba(0,98,65,0.08) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 40% at 95% 95%,
-      rgba(201,151,58,0.07) 0%, transparent 50%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.018'/%3E%3C/svg%3E");
-  background-attachment: fixed;
-  min-height: 100vh;
+    radial-gradient(ellipse 90% 50% at 50% -5%,
+      rgba(45,155,107,0.30) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 100% 100%,
+      rgba(0,20,10,0.60) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 0% 80%,
+      rgba(201,151,58,0.08) 0%, transparent 50%) !important;
+  font-family: 'DM Sans', 'Noto Sans KR', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ── Streamlit 전역 오버라이드 ── */
-.stApp {
+/* 컨테이너 배경 투명 */
+[data-testid="stVerticalBlock"],
+[data-testid="stHorizontalBlock"],
+[data-testid="column"],
+.element-container,
+.block-container {
   background: transparent !important;
 }
-section[data-testid="stSidebar"] {
-  background: var(--sb-forest-deep) !important;
-}
+
 .block-container {
   padding: 2rem 2.5rem !important;
   max-width: 1180px !important;
 }
 
 /* ============================================================
+   모든 텍스트 흰색
+   ============================================================ */
+
+.stApp,
+.stApp *,
+.stMarkdown,
+.stMarkdown *,
+[data-testid="stMarkdownContainer"],
+[data-testid="stMarkdownContainer"] *,
+[data-testid="stText"],
+[data-testid="stCaptionContainer"] {
+  color: var(--sb-white) !important;
+}
+
+p, li {
+  color: var(--sb-white-80) !important;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+header[data-testid="stHeader"],
+.stApp > header {
+  background: rgba(0,20,12,0.88) !important;
+  backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid rgba(201,151,58,0.25) !important;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.35) !important;
+}
+
+/* ============================================================
    TYPOGRAPHY
    ============================================================ */
 
-h1 {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 2.25rem;
-  font-weight: 700;
-  color: var(--sb-forest-deep);
-  letter-spacing: -0.025em;
-  line-height: 1.18;
-  position: relative;
-  padding-bottom: 0.5em;
-  margin-bottom: 0.15em;
+h1, .stMarkdown h1, [data-testid="stMarkdownContainer"] h1 {
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 2.2rem !important;
+  font-weight: 700 !important;
+  color: var(--sb-white) !important;
+  letter-spacing: -0.025em !important;
+  line-height: 1.18 !important;
+  position: relative !important;
+  padding-bottom: 0.45em !important;
 }
-h1::after {
+h1::after, .stMarkdown h1::after {
   content: '';
   position: absolute;
   bottom: 0; left: 0;
-  width: 52px; height: 3px;
+  width: 50px; height: 3px;
   background: linear-gradient(90deg, var(--sb-gold), var(--sb-gold-light));
   border-radius: var(--sb-radius-pill);
 }
 
-h2 {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--sb-forest);
-  letter-spacing: -0.018em;
-  margin-bottom: 0.5em;
+h2, .stMarkdown h2, [data-testid="stMarkdownContainer"] h2 {
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 1.35rem !important;
+  font-weight: 600 !important;
+  color: var(--sb-white) !important;
+  letter-spacing: -0.018em !important;
 }
 
-h3 {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.73rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--sb-gold-deep);
-  margin-bottom: 0.6em;
+h3, .stMarkdown h3, [data-testid="stMarkdownContainer"] h3 {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 0.74rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.14em !important;
+  color: var(--sb-gold-light) !important;
 }
 
-p, li {
-  color: var(--sb-bark);
-  font-weight: 400;
-}
-
-/* 섹션 아이콘 + 제목 행 */
-h2 > span:first-child {
-  margin-right: 0.4em;
-}
-
-/* ── 구분선 ── */
 hr {
   border: none;
   height: 1px;
   background: linear-gradient(90deg,
     transparent,
-    var(--sb-latte) 20%,
-    rgba(201,151,58,0.25) 50%,
-    var(--sb-latte) 80%,
+    rgba(201,151,58,0.40) 30%,
+    rgba(201,151,58,0.55) 50%,
+    rgba(201,151,58,0.40) 70%,
     transparent
   );
-  margin: 40px 0;
+  margin: 36px 0;
 }
 
-/* ============================================================
-   HEADER / NAVBAR
-   ============================================================ */
-
-header[data-testid="stHeader"],
-.stApp > header {
-  background: var(--sb-forest-deep) !important;
-  border-bottom: 1px solid rgba(201,151,58,0.20) !important;
-  box-shadow: 0 2px 16px rgba(26,15,10,0.22) !important;
-}
-
-/* ============================================================
-   CARDS
-   ============================================================ */
-
-.card {
-  background: #ffffff;
-  border-radius: var(--sb-radius);
-  padding: 28px 32px;
-  margin-bottom: 22px;
-  box-shadow: var(--sb-shadow-card);
-  border: 1px solid rgba(201,151,58,0.14);
-  position: relative;
-  overflow: hidden;
-  transition:
-    transform 0.28s cubic-bezier(.22,.68,0,1.15),
-    box-shadow 0.28s ease;
-}
-
-/* 상단 금선 */
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg,
-    var(--sb-forest)      0%,
-    var(--sb-gold)        45%,
-    var(--sb-gold-light)  55%,
-    var(--sb-forest-mid)  100%
-  );
-  opacity: 0.75;
-}
-
-/* 우하단 장식 원 */
-.card::after {
-  content: '';
-  position: absolute;
-  bottom: -60px; right: -60px;
-  width: 160px; height: 160px;
-  border-radius: 50%;
-  background: radial-gradient(circle,
-    rgba(0,98,65,0.05) 0%,
-    transparent 70%
-  );
-  pointer-events: none;
-}
-
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--sb-shadow-lg);
-}
-
-/* 앱 타이틀 카드 (첫 번째) */
-.card:first-of-type {
-  background: linear-gradient(135deg,
-    var(--sb-forest-deep) 0%,
-    var(--sb-forest)      60%,
-    var(--sb-forest-mid)  100%
-  );
-  border-color: rgba(201,151,58,0.30);
-}
-.card:first-of-type::before {
-  background: linear-gradient(90deg,
-    var(--sb-gold-light), var(--sb-gold), var(--sb-gold-light)
-  );
-  opacity: 1;
-}
-.card:first-of-type h1,
-.card:first-of-type h2,
-.card:first-of-type p,
-.card:first-of-type span {
-  color: var(--sb-parchment) !important;
-}
-
-/* ============================================================
-   SECTION HEADERS (섹션 제목 with emoji)
-   ============================================================ */
-
+/* 섹션 헤더 블록 */
 .stMarkdown h2 {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: linear-gradient(135deg,
-    rgba(0,98,65,0.06) 0%,
-    rgba(201,151,58,0.04) 100%
-  );
-  border-left: 4px solid var(--sb-forest);
-  border-radius: 0 var(--sb-radius-sm) var(--sb-radius-sm) 0;
-  padding: 12px 18px;
-  margin: 28px 0 18px;
-  font-size: 1.25rem;
+  background: rgba(255,255,255,0.06) !important;
+  border-left: 4px solid var(--sb-gold) !important;
+  border-radius: 0 var(--sb-radius-sm) var(--sb-radius-sm) 0 !important;
+  padding: 12px 18px !important;
+  margin: 28px 0 18px !important;
+  backdrop-filter: blur(8px) !important;
 }
 
 /* ============================================================
    BUTTONS
    ============================================================ */
 
-/* 기본 버튼 */
 .stButton > button {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.86rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  border-radius: var(--sb-radius-pill);
-  padding: 11px 26px;
-  border: 1.5px solid transparent;
-  background: linear-gradient(135deg, var(--sb-forest) 0%, var(--sb-forest-deep) 100%);
-  color: #ffffff;
-  box-shadow:
-    0 4px 16px rgba(0,98,65,0.30),
-    inset 0 1px 0 rgba(255,255,255,0.10);
-  transition:
-    transform 0.22s cubic-bezier(.22,.68,0,1.2),
-    box-shadow 0.22s ease,
-    background 0.22s ease;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 0.86rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  border-radius: var(--sb-radius-pill) !important;
+  padding: 11px 28px !important;
+  border: 1.5px solid rgba(201,151,58,0.40) !important;
+  background: rgba(255,255,255,0.10) !important;
+  color: var(--sb-white) !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.20),
+              inset 0 1px 0 rgba(255,255,255,0.10) !important;
+  transition: transform 0.22s cubic-bezier(.22,.68,0,1.2),
+              box-shadow 0.22s ease,
+              background 0.22s ease !important;
+  position: relative !important;
+  overflow: hidden !important;
 }
-
-/* 상단 광택 */
-.stButton > button::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 45%;
-  background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 100%);
-  border-radius: inherit;
-  pointer-events: none;
-}
-
 .stButton > button:hover {
-  background: linear-gradient(135deg, var(--sb-forest-mid) 0%, var(--sb-forest) 100%);
-  transform: translateY(-2px) scale(1.025);
-  box-shadow: 0 8px 28px rgba(0,98,65,0.38);
-  border-color: rgba(201,151,58,0.30);
+  background: rgba(201,151,58,0.28) !important;
+  border-color: var(--sb-gold) !important;
+  color: var(--sb-gold-light) !important;
+  transform: translateY(-2px) scale(1.025) !important;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.28) !important;
 }
 .stButton > button:active {
-  transform: translateY(0) scale(0.98);
-  box-shadow: 0 2px 8px rgba(0,98,65,0.25);
-}
-
-/* 저장 버튼 등 보조 버튼 */
-.stButton > button[kind="secondary"] {
-  background: var(--sb-parchment);
-  color: var(--sb-forest-deep);
-  border-color: rgba(0,98,65,0.22);
-  box-shadow: var(--sb-shadow-sm);
-}
-.stButton > button[kind="secondary"]:hover {
-  background: var(--sb-mint-faint);
-  border-color: var(--sb-forest);
-  color: var(--sb-forest-deep);
-  box-shadow: var(--sb-shadow-md);
+  transform: translateY(0) scale(0.98) !important;
 }
 
 /* ============================================================
-   INPUTS & FORM ELEMENTS
+   INPUTS
    ============================================================ */
 
 /* 레이블 */
-label, .stTextInput label, .stNumberInput label, .stSelectbox label {
-  font-family: 'DM Sans', sans-serif !important;
+.stTextInput label,
+.stNumberInput label,
+.stSelectbox label,
+.stTextArea label,
+.stDateInput label {
   font-size: 0.76rem !important;
   font-weight: 600 !important;
   letter-spacing: 0.09em !important;
   text-transform: uppercase !important;
-  color: var(--sb-warm-gray) !important;
-  margin-bottom: 6px !important;
+  color: var(--sb-white-55) !important;
 }
 
-/* 입력 필드 */
+/* 입력창 */
 input[type="text"],
 input[type="number"],
 input[type="email"],
@@ -344,52 +222,58 @@ input[type="password"],
 textarea,
 .stTextInput > div > div > input,
 .stNumberInput > div > div > input {
-  background: var(--sb-parchment) !important;
-  border: 1.5px solid rgba(201,151,58,0.22) !important;
+  background: rgba(0,20,12,0.55) !important;
+  border: 1.5px solid rgba(201,151,58,0.30) !important;
   border-radius: var(--sb-radius-sm) !important;
-  color: var(--sb-espresso) !important;
+  color: var(--sb-white) !important;
   font-family: 'DM Sans', sans-serif !important;
   font-size: 0.95rem !important;
   font-weight: 500 !important;
   padding: 11px 16px !important;
-  box-shadow: inset 0 1px 3px rgba(26,15,10,0.04) !important;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease !important;
+  backdrop-filter: blur(8px) !important;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
 }
-
-input:focus,
+input::placeholder, textarea::placeholder {
+  color: var(--sb-white-30) !important;
+}
+input:focus, textarea:focus,
 .stTextInput > div > div > input:focus,
 .stNumberInput > div > div > input:focus {
-  border-color: var(--sb-forest) !important;
-  background: #ffffff !important;
-  box-shadow:
-    inset 0 1px 3px rgba(26,15,10,0.04),
-    0 0 0 3px rgba(0,98,65,0.10) !important;
+  border-color: var(--sb-gold) !important;
+  box-shadow: 0 0 0 3px rgba(201,151,58,0.18) !important;
   outline: none !important;
+  background: rgba(0,30,18,0.70) !important;
 }
 
-input::placeholder {
-  color: rgba(138,131,120,0.55) !important;
-  font-weight: 400 !important;
-}
-
-/* 숫자 입력 +/- 버튼 */
+/* +/- 버튼 */
 .stNumberInput > div > div > button {
-  background: var(--sb-latte) !important;
-  border: 1px solid rgba(201,151,58,0.20) !important;
-  color: var(--sb-forest-deep) !important;
+  background: rgba(255,255,255,0.10) !important;
+  border: 1px solid rgba(201,151,58,0.28) !important;
+  color: var(--sb-white) !important;
   font-weight: 700 !important;
   border-radius: var(--sb-radius-xs) !important;
-  width: 32px !important;
-  height: 32px !important;
   transition: background 0.18s, border-color 0.18s !important;
 }
 .stNumberInput > div > div > button:hover {
-  background: var(--sb-gold-faint) !important;
+  background: rgba(201,151,58,0.25) !important;
   border-color: var(--sb-gold) !important;
-  color: var(--sb-gold-deep) !important;
+  color: var(--sb-gold-light) !important;
+}
+
+/* ============================================================
+   SELECTBOX
+   ============================================================ */
+
+.stSelectbox > div > div,
+.stSelectbox > div > div > div {
+  background: rgba(0,20,12,0.55) !important;
+  border: 1.5px solid rgba(201,151,58,0.30) !important;
+  border-radius: var(--sb-radius-sm) !important;
+  color: var(--sb-white) !important;
+  backdrop-filter: blur(8px) !important;
+}
+.stSelectbox > div > div:hover {
+  border-color: var(--sb-gold) !important;
 }
 
 /* ============================================================
@@ -401,125 +285,82 @@ input::placeholder {
   border-radius: var(--sb-radius) !important;
   overflow: hidden !important;
   box-shadow: var(--sb-shadow-md) !important;
-  border: 1px solid rgba(201,151,58,0.15) !important;
+  border: 1px solid rgba(201,151,58,0.20) !important;
+  background: rgba(0,20,12,0.50) !important;
 }
-
-/* 헤더 행 */
-[data-testid="stDataFrame"] thead th,
-.stDataFrame thead th {
-  background: var(--sb-forest-deep) !important;
+[data-testid="stDataFrame"] thead th {
+  background: rgba(0,15,8,0.80) !important;
   color: var(--sb-gold-light) !important;
-  font-family: 'DM Sans', sans-serif !important;
   font-size: 0.75rem !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   letter-spacing: 0.10em !important;
   text-transform: uppercase !important;
   padding: 14px 16px !important;
-  border-bottom: 2px solid rgba(201,151,58,0.30) !important;
+  border-bottom: 1px solid rgba(201,151,58,0.30) !important;
 }
-
-/* 데이터 행 */
-[data-testid="stDataFrame"] tbody tr,
-.stDataFrame tbody tr {
-  background: #ffffff !important;
+[data-testid="stDataFrame"] tbody tr {
+  background: rgba(0,30,18,0.30) !important;
   transition: background 0.15s !important;
 }
-[data-testid="stDataFrame"] tbody tr:nth-child(even),
-.stDataFrame tbody tr:nth-child(even) {
-  background: var(--sb-parchment) !important;
+[data-testid="stDataFrame"] tbody tr:nth-child(even) {
+  background: rgba(0,20,12,0.40) !important;
 }
-[data-testid="stDataFrame"] tbody tr:hover,
-.stDataFrame tbody tr:hover {
-  background: var(--sb-mint-faint) !important;
+[data-testid="stDataFrame"] tbody tr:hover {
+  background: rgba(201,151,58,0.12) !important;
 }
-
-/* 셀 */
-[data-testid="stDataFrame"] tbody td,
-.stDataFrame tbody td {
-  font-family: 'DM Sans', sans-serif !important;
+[data-testid="stDataFrame"] tbody td {
+  color: var(--sb-white-80) !important;
   font-size: 0.90rem !important;
   padding: 12px 16px !important;
-  color: var(--sb-espresso) !important;
-  border-bottom: 1px solid var(--sb-latte) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
 }
 
 /* ============================================================
-   CHART CONTAINERS
+   METRIC
+   ============================================================ */
+
+[data-testid="metric-container"] {
+  background: rgba(255,255,255,0.07) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(201,151,58,0.20) !important;
+  border-top: 3px solid var(--sb-gold) !important;
+  border-radius: var(--sb-radius-sm) !important;
+  padding: 20px 22px !important;
+  box-shadow: var(--sb-shadow-sm) !important;
+  transition: transform 0.22s ease, box-shadow 0.22s ease !important;
+}
+[data-testid="metric-container"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--sb-shadow-md) !important;
+}
+[data-testid="metric-container"] label {
+  font-size: 0.75rem !important;
+  letter-spacing: 0.10em !important;
+  text-transform: uppercase !important;
+  color: var(--sb-white-55) !important;
+  font-weight: 600 !important;
+}
+[data-testid="stMetricValue"] {
+  font-family: 'Lora', Georgia, serif !important;
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  color: var(--sb-white) !important;
+}
+
+/* ============================================================
+   CHARTS
    ============================================================ */
 
 .plot-container,
 [data-testid="stPlotlyChart"],
 .stVegaLiteChart {
-  background: #ffffff;
-  border-radius: var(--sb-radius);
-  padding: 20px;
-  box-shadow: var(--sb-shadow-md);
-  border: 1px solid rgba(201,151,58,0.14);
-  margin-bottom: 20px;
-}
-
-/* ============================================================
-   METRIC WIDGETS
-   ============================================================ */
-
-[data-testid="metric-container"],
-.stMetric {
-  background: #ffffff;
-  border-radius: var(--sb-radius-sm);
-  padding: 20px 22px !important;
-  box-shadow: var(--sb-shadow-sm);
-  border: 1px solid rgba(201,151,58,0.14);
-  border-top: 3px solid var(--sb-forest) !important;
-  transition: transform 0.22s ease, box-shadow 0.22s ease;
-}
-[data-testid="metric-container"]:hover,
-.stMetric:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--sb-shadow-md);
-}
-
-[data-testid="metric-container"] label,
-.stMetric label {
-  font-size: 0.75rem !important;
-  letter-spacing: 0.10em !important;
-  text-transform: uppercase !important;
-  color: var(--sb-warm-gray) !important;
-  font-weight: 600 !important;
-}
-
-[data-testid="metric-container"] [data-testid="stMetricValue"],
-.stMetric [data-testid="stMetricValue"] {
-  font-family: 'Lora', Georgia, serif !important;
-  font-size: 2rem !important;
-  font-weight: 700 !important;
-  color: var(--sb-forest-deep) !important;
-  letter-spacing: -0.02em !important;
-}
-
-/* 수익률 색상 */
-[data-testid="stMetricDelta"] > div {
-  font-weight: 600 !important;
-  font-size: 0.85rem !important;
-  border-radius: var(--sb-radius-pill) !important;
-  padding: 2px 10px !important;
-}
-
-/* ============================================================
-   SELECTBOX / DROPDOWN
-   ============================================================ */
-
-.stSelectbox > div > div {
-  background: var(--sb-parchment) !important;
-  border: 1.5px solid rgba(201,151,58,0.22) !important;
-  border-radius: var(--sb-radius-sm) !important;
-  color: var(--sb-espresso) !important;
-  font-family: 'DM Sans', sans-serif !important;
-  font-weight: 500 !important;
-  transition: border-color 0.2s, box-shadow 0.2s !important;
-}
-.stSelectbox > div > div:hover {
-  border-color: var(--sb-forest) !important;
-  box-shadow: 0 0 0 3px rgba(0,98,65,0.08) !important;
+  background: rgba(0,20,12,0.50) !important;
+  border-radius: var(--sb-radius) !important;
+  padding: 20px !important;
+  box-shadow: var(--sb-shadow-md) !important;
+  border: 1px solid rgba(201,151,58,0.15) !important;
+  backdrop-filter: blur(10px) !important;
+  margin-bottom: 20px !important;
 }
 
 /* ============================================================
@@ -527,43 +368,17 @@ input::placeholder {
    ============================================================ */
 
 .stExpander {
-  background: #ffffff !important;
-  border: 1px solid rgba(201,151,58,0.18) !important;
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(201,151,58,0.20) !important;
   border-radius: var(--sb-radius) !important;
-  box-shadow: var(--sb-shadow-sm) !important;
+  backdrop-filter: blur(12px) !important;
   overflow: hidden !important;
 }
 .stExpander > div:first-child {
-  background: var(--sb-parchment) !important;
+  background: rgba(0,15,8,0.40) !important;
   padding: 14px 20px !important;
   font-weight: 600 !important;
-  color: var(--sb-forest-deep) !important;
-  border-bottom: 1px solid var(--sb-latte) !important;
-}
-
-/* ============================================================
-   ALERTS / INFO BOXES
-   ============================================================ */
-
-.stAlert {
-  border-radius: var(--sb-radius-sm) !important;
-  border: none !important;
-  font-family: 'DM Sans', sans-serif !important;
-}
-
-.stAlert[data-baseweb="notification"] {
-  background: var(--sb-mint-faint) !important;
-  border-left: 4px solid var(--sb-forest) !important;
-  color: var(--sb-forest-deep) !important;
-}
-
-/* ============================================================
-   PROGRESS / SPINNER
-   ============================================================ */
-
-.stProgress > div > div > div {
-  background: linear-gradient(90deg, var(--sb-forest), var(--sb-gold)) !important;
-  border-radius: var(--sb-radius-pill) !important;
+  border-bottom: 1px solid rgba(201,151,58,0.18) !important;
 }
 
 /* ============================================================
@@ -571,11 +386,8 @@ input::placeholder {
    ============================================================ */
 
 section[data-testid="stSidebar"] {
-  background: var(--sb-forest-deep) !important;
+  background: rgba(0,15,8,0.95) !important;
   border-right: 1px solid rgba(201,151,58,0.20) !important;
-}
-section[data-testid="stSidebar"] * {
-  color: rgba(232,245,238,0.85) !important;
 }
 section[data-testid="stSidebar"] h1,
 section[data-testid="stSidebar"] h2,
@@ -586,120 +398,58 @@ section[data-testid="stSidebar"] .stButton > button {
   background: rgba(201,151,58,0.15) !important;
   border: 1px solid rgba(201,151,58,0.30) !important;
   color: var(--sb-gold-light) !important;
-  box-shadow: none !important;
 }
 section[data-testid="stSidebar"] .stButton > button:hover {
   background: rgba(201,151,58,0.28) !important;
 }
 
 /* ============================================================
-   APP TITLE BLOCK (상단 로고 영역)
+   PROGRESS / ALERTS
    ============================================================ */
 
-.app-header {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 22px 28px;
-  background: linear-gradient(135deg,
-    var(--sb-forest-deep) 0%,
-    var(--sb-forest)      100%
-  );
-  border-radius: var(--sb-radius);
-  border: 1px solid rgba(201,151,58,0.25);
-  box-shadow: var(--sb-shadow-lg);
-  margin-bottom: 24px;
-  position: relative;
-  overflow: hidden;
+.stProgress > div > div > div {
+  background: linear-gradient(90deg, var(--sb-forest-light), var(--sb-gold)) !important;
+  border-radius: var(--sb-radius-pill) !important;
 }
-.app-header::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg,
-    transparent, var(--sb-gold), var(--sb-gold-light), var(--sb-gold), transparent
-  );
-}
-.app-header::after {
-  content: '';
-  position: absolute;
-  right: -40px; top: -40px;
-  width: 200px; height: 200px;
-  border-radius: 50%;
-  background: radial-gradient(circle,
-    rgba(201,151,58,0.12) 0%,
-    transparent 65%
-  );
-  pointer-events: none;
-}
-.app-header-logo {
-  font-size: 2rem;
-}
-.app-header-text h1 {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 1.45rem;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: -0.01em;
-  margin: 0;
-  padding: 0;
-}
-.app-header-text h1::after { display: none; }
-.app-header-text p {
-  font-size: 0.82rem;
-  color: rgba(201,151,58,0.80);
-  margin: 2px 0 0;
-  letter-spacing: 0.04em;
-  font-weight: 400;
+[data-baseweb="notification"] {
+  background: rgba(45,155,107,0.18) !important;
+  border-left: 4px solid var(--sb-forest-light) !important;
 }
 
 /* ============================================================
    SCROLLBAR
    ============================================================ */
 
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: var(--sb-latte); }
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: rgba(0,20,12,0.40); }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--sb-forest), var(--sb-gold));
+  background: linear-gradient(180deg, var(--sb-forest-light), var(--sb-gold));
   border-radius: var(--sb-radius-pill);
 }
 
-/* ============================================================
-   TEXT SELECTION
-   ============================================================ */
-
 ::selection {
-  background: rgba(201,151,58,0.25);
-  color: var(--sb-espresso);
+  background: rgba(201,151,58,0.35);
+  color: #ffffff;
 }
 
 /* ============================================================
-   PAGE ENTRY ANIMATIONS
+   ANIMATIONS
    ============================================================ */
 
 @keyframes fadeSlideUp {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0);    }
 }
-
-.card,
-[data-testid="metric-container"],
-[data-testid="stDataFrame"],
-.plot-container {
-  animation: fadeSlideUp 0.45s cubic-bezier(.22,.68,0,1) both;
+.element-container {
+  animation: fadeSlideUp 0.40s cubic-bezier(.22,.68,0,1) both;
 }
-
-/* 순차 등장 */
-.element-container:nth-child(1)  { animation-delay: 0.05s; }
-.element-container:nth-child(2)  { animation-delay: 0.10s; }
-.element-container:nth-child(3)  { animation-delay: 0.15s; }
-.element-container:nth-child(4)  { animation-delay: 0.20s; }
-.element-container:nth-child(5)  { animation-delay: 0.25s; }
-.element-container:nth-child(6)  { animation-delay: 0.30s; }
-.element-container:nth-child(7)  { animation-delay: 0.35s; }
-.element-container:nth-child(8)  { animation-delay: 0.40s; }
-.element-container:nth-child(n+9){ animation-delay: 0.45s; }
+.element-container:nth-child(1)  { animation-delay: 0.04s; }
+.element-container:nth-child(2)  { animation-delay: 0.08s; }
+.element-container:nth-child(3)  { animation-delay: 0.12s; }
+.element-container:nth-child(4)  { animation-delay: 0.16s; }
+.element-container:nth-child(5)  { animation-delay: 0.20s; }
+.element-container:nth-child(6)  { animation-delay: 0.24s; }
+.element-container:nth-child(n+7){ animation-delay: 0.28s; }
 
 /* ============================================================
    RESPONSIVE
@@ -707,7 +457,6 @@ section[data-testid="stSidebar"] .stButton > button:hover {
 
 @media (max-width: 768px) {
   .block-container { padding: 1.2rem 1rem !important; }
-  h1 { font-size: 1.75rem; }
-  h2 { font-size: 1.15rem; }
-  .card { padding: 20px; }
+  h1 { font-size: 1.75rem !important; }
+  h2 { font-size: 1.15rem !important; }
 }
