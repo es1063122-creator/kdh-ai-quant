@@ -1,61 +1,80 @@
 /* ============================================================
-   KDH AI QUANT TRADER — STARBUCKS PREMIUM DESIGN SYSTEM
-   Deep Forest Green · Gold Accent · White Text
+   KDH AI QUANT TRADER — DARK TERMINAL DESIGN SYSTEM
+   Bloomberg Dark · Neon Green Accent · Professional Trading
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 /* ── CSS Variables ── */
 :root {
-  --sb-forest-deep:  #00422a;
-  --sb-forest:       #006241;
-  --sb-forest-mid:   #1a7a52;
-  --sb-forest-light: #2d9b6b;
+  /* Core Dark Palette */
+  --qt-bg:           #0a0e0f;
+  --qt-surface:      #111618;
+  --qt-surface-2:    #161c1e;
+  --qt-surface-3:    #1c2326;
+  --qt-border:       #222c2f;
+  --qt-border-2:     #2a3538;
 
-  --sb-gold-deep:    #8c6a18;
-  --sb-gold:         #c9973a;
-  --sb-gold-light:   #e8bf6a;
+  /* Neon Accents */
+  --qt-green:        #00e676;
+  --qt-green-dim:    #00c853;
+  --qt-green-faint:  rgba(0,230,118,0.10);
+  --qt-green-glow:   rgba(0,230,118,0.20);
+  --qt-cyan:         #00bcd4;
+  --qt-blue:         #1e88e5;
 
-  --sb-white:        #ffffff;
-  --sb-white-80:     rgba(255,255,255,0.80);
-  --sb-white-55:     rgba(255,255,255,0.55);
-  --sb-white-30:     rgba(255,255,255,0.30);
+  /* Trading Colors */
+  --qt-up:           #00e676;
+  --qt-down:         #ff3d57;
+  --qt-up-bg:        rgba(0,230,118,0.08);
+  --qt-down-bg:      rgba(255,61,87,0.08);
+  --qt-neutral:      #90a4ae;
+  --qt-gold:         #ffd54f;
 
-  --sb-up:           #5dd68c;
-  --sb-down:         #ff7b7b;
+  /* Text */
+  --qt-text:         #e8edf0;
+  --qt-text-2:       #90a4ae;
+  --qt-text-3:       #546e7a;
+  --qt-text-inv:     #0a0e0f;
 
-  --sb-shadow-sm:    0 2px 8px rgba(0,0,0,0.15);
-  --sb-shadow-md:    0 6px 24px rgba(0,0,0,0.22);
-  --sb-shadow-lg:    0 16px 48px rgba(0,0,0,0.30);
+  /* Shadows & Glow */
+  --qt-shadow:       0 4px 24px rgba(0,0,0,0.40);
+  --qt-shadow-lg:    0 8px 48px rgba(0,0,0,0.55);
+  --qt-glow:         0 0 20px rgba(0,230,118,0.25);
+  --qt-glow-sm:      0 0 10px rgba(0,230,118,0.18);
 
-  --sb-radius:       18px;
-  --sb-radius-sm:    10px;
-  --sb-radius-xs:    6px;
-  --sb-radius-pill:  999px;
+  /* Geometry */
+  --qt-radius:       8px;
+  --qt-radius-sm:    5px;
+  --qt-radius-pill:  999px;
 }
 
 /* ============================================================
-   BASE
+   BASE RESET
    ============================================================ */
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
-/* 앱 전체 배경 */
-.stApp {
-  background-color: var(--sb-forest-deep) !important;
-  background-image:
-    radial-gradient(ellipse 90% 50% at 50% -5%,
-      rgba(45,155,107,0.30) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 100% 100%,
-      rgba(0,20,10,0.60) 0%, transparent 55%),
-    radial-gradient(ellipse 50% 40% at 0% 80%,
-      rgba(201,151,58,0.08) 0%, transparent 50%) !important;
-  font-family: 'DM Sans', 'Noto Sans KR', sans-serif !important;
-  -webkit-font-smoothing: antialiased;
+body, .stApp {
+  background: var(--qt-bg) !important;
+  font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif !important;
+  color: var(--qt-text) !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  -webkit-font-smoothing: antialiased !important;
 }
 
-/* 컨테이너 배경 투명 */
+/* 미세 그리드 패턴 배경 */
+.stApp {
+  background-image:
+    linear-gradient(rgba(0,230,118,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,230,118,0.02) 1px, transparent 1px) !important;
+  background-size: 40px 40px !important;
+  background-attachment: fixed !important;
+}
+
+/* 컨테이너 */
 [data-testid="stVerticalBlock"],
 [data-testid="stHorizontalBlock"],
 [data-testid="column"],
@@ -65,39 +84,31 @@ html { scroll-behavior: smooth; }
 }
 
 .block-container {
-  padding: 2rem 2.5rem !important;
-  max-width: 1180px !important;
+  padding: 1.5rem 2rem !important;
+  max-width: 1280px !important;
 }
 
 /* ============================================================
-   모든 텍스트 흰색
+   모든 텍스트 기본값
    ============================================================ */
 
-.stApp,
-.stApp *,
-.stMarkdown,
-.stMarkdown *,
-[data-testid="stMarkdownContainer"],
-[data-testid="stMarkdownContainer"] *,
-[data-testid="stText"],
-[data-testid="stCaptionContainer"] {
-  color: var(--sb-white) !important;
+.stApp *, .stMarkdown *, [data-testid="stMarkdownContainer"] * {
+  color: var(--qt-text) !important;
 }
 
-p, li {
-  color: var(--sb-white-80) !important;
+p, li, span {
+  color: var(--qt-text-2) !important;
 }
 
 /* ============================================================
-   HEADER
+   HEADER / TOPBAR
    ============================================================ */
 
-header[data-testid="stHeader"],
-.stApp > header {
-  background: rgba(0,20,12,0.88) !important;
-  backdrop-filter: blur(16px) !important;
-  border-bottom: 1px solid rgba(201,151,58,0.25) !important;
-  box-shadow: 0 2px 20px rgba(0,0,0,0.35) !important;
+header[data-testid="stHeader"], .stApp > header {
+  background: var(--qt-surface) !important;
+  border-bottom: 1px solid var(--qt-border) !important;
+  box-shadow: 0 1px 0 var(--qt-border), 0 4px 20px rgba(0,0,0,0.40) !important;
+  backdrop-filter: blur(0) !important;
 }
 
 /* ============================================================
@@ -105,62 +116,59 @@ header[data-testid="stHeader"],
    ============================================================ */
 
 h1, .stMarkdown h1, [data-testid="stMarkdownContainer"] h1 {
-  font-family: 'Lora', Georgia, serif !important;
-  font-size: 2.2rem !important;
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-size: 1.6rem !important;
   font-weight: 700 !important;
-  color: var(--sb-white) !important;
-  letter-spacing: -0.025em !important;
-  line-height: 1.18 !important;
-  position: relative !important;
-  padding-bottom: 0.45em !important;
-}
-h1::after, .stMarkdown h1::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0;
-  width: 50px; height: 3px;
-  background: linear-gradient(90deg, var(--sb-gold), var(--sb-gold-light));
-  border-radius: var(--sb-radius-pill);
+  color: var(--qt-text) !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.2 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
 }
 
 h2, .stMarkdown h2, [data-testid="stMarkdownContainer"] h2 {
-  font-family: 'Lora', Georgia, serif !important;
-  font-size: 1.35rem !important;
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-size: 0.80rem !important;
   font-weight: 600 !important;
-  color: var(--sb-white) !important;
-  letter-spacing: -0.018em !important;
+  color: var(--qt-green) !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 8px 0 8px 12px !important;
+  border-left: 2px solid var(--qt-green) !important;
+  margin: 24px 0 14px !important;
 }
 
-h3, .stMarkdown h3, [data-testid="stMarkdownContainer"] h3 {
-  font-family: 'DM Sans', sans-serif !important;
-  font-size: 0.74rem !important;
-  font-weight: 700 !important;
+h3, .stMarkdown h3 {
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  color: var(--qt-text-3) !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.14em !important;
-  color: var(--sb-gold-light) !important;
+  letter-spacing: 0.12em !important;
 }
 
 hr {
-  border: none;
-  height: 1px;
-  background: linear-gradient(90deg,
-    transparent,
-    rgba(201,151,58,0.40) 30%,
-    rgba(201,151,58,0.55) 50%,
-    rgba(201,151,58,0.40) 70%,
-    transparent
-  );
-  margin: 36px 0;
+  border: none !important;
+  height: 1px !important;
+  background: var(--qt-border) !important;
+  margin: 28px 0 !important;
 }
 
-/* 섹션 헤더 블록 */
-.stMarkdown h2 {
-  background: rgba(255,255,255,0.06) !important;
-  border-left: 4px solid var(--sb-gold) !important;
-  border-radius: 0 var(--sb-radius-sm) var(--sb-radius-sm) 0 !important;
-  padding: 12px 18px !important;
-  margin: 28px 0 18px !important;
-  backdrop-filter: blur(8px) !important;
+/* ============================================================
+   SECTION PANELS — 트레이딩 패널 스타일
+   ============================================================ */
+
+/* 앱 타이틀 영역 */
+[data-testid="stMarkdownContainer"]:has(h1) {
+  background: var(--qt-surface) !important;
+  border: 1px solid var(--qt-border) !important;
+  border-top: 2px solid var(--qt-green) !important;
+  border-radius: var(--qt-radius) !important;
+  padding: 20px 24px !important;
+  margin-bottom: 20px !important;
 }
 
 /* ============================================================
@@ -168,33 +176,54 @@ hr {
    ============================================================ */
 
 .stButton > button {
-  font-family: 'DM Sans', sans-serif !important;
-  font-size: 0.86rem !important;
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-size: 0.82rem !important;
   font-weight: 600 !important;
-  letter-spacing: 0.04em !important;
-  border-radius: var(--sb-radius-pill) !important;
-  padding: 11px 28px !important;
-  border: 1.5px solid rgba(201,151,58,0.40) !important;
-  background: rgba(255,255,255,0.10) !important;
-  color: var(--sb-white) !important;
-  backdrop-filter: blur(10px) !important;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.20),
-              inset 0 1px 0 rgba(255,255,255,0.10) !important;
-  transition: transform 0.22s cubic-bezier(.22,.68,0,1.2),
-              box-shadow 0.22s ease,
-              background 0.22s ease !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  border-radius: var(--qt-radius-sm) !important;
+  padding: 10px 24px !important;
+  border: 1px solid var(--qt-green-dim) !important;
+  background: transparent !important;
+  color: var(--qt-green) !important;
+  box-shadow: none !important;
+  transition: all 0.18s ease !important;
   position: relative !important;
   overflow: hidden !important;
 }
+.stButton > button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--qt-green-faint);
+  opacity: 0;
+  transition: opacity 0.18s;
+}
 .stButton > button:hover {
-  background: rgba(201,151,58,0.28) !important;
-  border-color: var(--sb-gold) !important;
-  color: var(--sb-gold-light) !important;
-  transform: translateY(-2px) scale(1.025) !important;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.28) !important;
+  background: var(--qt-green-faint) !important;
+  border-color: var(--qt-green) !important;
+  color: var(--qt-green) !important;
+  box-shadow: var(--qt-glow-sm) !important;
+  transform: none !important;
+}
+.stButton > button:hover::before {
+  opacity: 1;
 }
 .stButton > button:active {
-  transform: translateY(0) scale(0.98) !important;
+  transform: scale(0.98) !important;
+}
+
+/* 실행/분석 버튼 — 강조 */
+.stButton > button[kind="primary"] {
+  background: var(--qt-green) !important;
+  color: var(--qt-text-inv) !important;
+  border-color: var(--qt-green) !important;
+  font-weight: 700 !important;
+  box-shadow: var(--qt-glow-sm) !important;
+}
+.stButton > button[kind="primary"]:hover {
+  background: var(--qt-green-dim) !important;
+  box-shadow: var(--qt-glow) !important;
 }
 
 /* ============================================================
@@ -207,11 +236,13 @@ hr {
 .stSelectbox label,
 .stTextArea label,
 .stDateInput label {
-  font-size: 0.76rem !important;
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-size: 0.70rem !important;
   font-weight: 600 !important;
-  letter-spacing: 0.09em !important;
+  letter-spacing: 0.10em !important;
   text-transform: uppercase !important;
-  color: var(--sb-white-55) !important;
+  color: var(--qt-text-3) !important;
+  margin-bottom: 5px !important;
 }
 
 /* 입력창 */
@@ -222,42 +253,43 @@ input[type="password"],
 textarea,
 .stTextInput > div > div > input,
 .stNumberInput > div > div > input {
-  background: rgba(0,20,12,0.55) !important;
-  border: 1.5px solid rgba(201,151,58,0.30) !important;
-  border-radius: var(--sb-radius-sm) !important;
-  color: var(--sb-white) !important;
-  font-family: 'DM Sans', sans-serif !important;
-  font-size: 0.95rem !important;
-  font-weight: 500 !important;
-  padding: 11px 16px !important;
-  backdrop-filter: blur(8px) !important;
-  transition: border-color 0.2s, box-shadow 0.2s !important;
+  background: var(--qt-surface-2) !important;
+  border: 1px solid var(--qt-border-2) !important;
+  border-radius: var(--qt-radius-sm) !important;
+  color: var(--qt-text) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.88rem !important;
+  font-weight: 400 !important;
+  padding: 10px 14px !important;
+  transition: border-color 0.15s, box-shadow 0.15s !important;
+  caret-color: var(--qt-green) !important;
 }
 input::placeholder, textarea::placeholder {
-  color: var(--sb-white-30) !important;
+  color: var(--qt-text-3) !important;
 }
 input:focus, textarea:focus,
 .stTextInput > div > div > input:focus,
 .stNumberInput > div > div > input:focus {
-  border-color: var(--sb-gold) !important;
-  box-shadow: 0 0 0 3px rgba(201,151,58,0.18) !important;
+  border-color: var(--qt-green-dim) !important;
+  box-shadow: 0 0 0 2px rgba(0,230,118,0.15) !important;
   outline: none !important;
-  background: rgba(0,30,18,0.70) !important;
+  background: var(--qt-surface-3) !important;
 }
 
 /* +/- 버튼 */
 .stNumberInput > div > div > button {
-  background: rgba(255,255,255,0.10) !important;
-  border: 1px solid rgba(201,151,58,0.28) !important;
-  color: var(--sb-white) !important;
+  background: var(--qt-surface-3) !important;
+  border: 1px solid var(--qt-border-2) !important;
+  color: var(--qt-text-2) !important;
   font-weight: 700 !important;
-  border-radius: var(--sb-radius-xs) !important;
-  transition: background 0.18s, border-color 0.18s !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  border-radius: var(--qt-radius-sm) !important;
+  transition: all 0.15s !important;
 }
 .stNumberInput > div > div > button:hover {
-  background: rgba(201,151,58,0.25) !important;
-  border-color: var(--sb-gold) !important;
-  color: var(--sb-gold-light) !important;
+  background: var(--qt-green-faint) !important;
+  border-color: var(--qt-green-dim) !important;
+  color: var(--qt-green) !important;
 }
 
 /* ============================================================
@@ -266,101 +298,158 @@ input:focus, textarea:focus,
 
 .stSelectbox > div > div,
 .stSelectbox > div > div > div {
-  background: rgba(0,20,12,0.55) !important;
-  border: 1.5px solid rgba(201,151,58,0.30) !important;
-  border-radius: var(--sb-radius-sm) !important;
-  color: var(--sb-white) !important;
-  backdrop-filter: blur(8px) !important;
+  background: var(--qt-surface-2) !important;
+  border: 1px solid var(--qt-border-2) !important;
+  border-radius: var(--qt-radius-sm) !important;
+  color: var(--qt-text) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.88rem !important;
 }
 .stSelectbox > div > div:hover {
-  border-color: var(--sb-gold) !important;
+  border-color: var(--qt-green-dim) !important;
+}
+
+/* 드롭다운 팝업 */
+[data-baseweb="popover"],
+[data-baseweb="menu"],
+[role="listbox"] {
+  background: var(--qt-surface-2) !important;
+  border: 1px solid var(--qt-border-2) !important;
+  border-radius: var(--qt-radius) !important;
+  box-shadow: var(--qt-shadow-lg) !important;
+}
+[data-baseweb="popover"] *,
+[data-baseweb="menu"] *,
+[role="listbox"] * {
+  background: transparent !important;
+  color: var(--qt-text) !important;
+}
+[role="option"] {
+  padding: 10px 16px !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.86rem !important;
+  border-bottom: 1px solid var(--qt-border) !important;
+  transition: background 0.12s !important;
+}
+[role="option"]:hover,
+[role="option"][aria-selected="true"] {
+  background: var(--qt-green-faint) !important;
+  color: var(--qt-green) !important;
 }
 
 /* ============================================================
-   DATAFRAME / TABLE
+   DATAFRAME / TABLE — Bloomberg 스타일
    ============================================================ */
 
 [data-testid="stDataFrame"],
 .stDataFrame {
-  border-radius: var(--sb-radius) !important;
+  border-radius: var(--qt-radius) !important;
   overflow: hidden !important;
-  box-shadow: var(--sb-shadow-md) !important;
-  border: 1px solid rgba(201,151,58,0.20) !important;
-  background: rgba(0,20,12,0.50) !important;
+  border: 1px solid var(--qt-border) !important;
+  box-shadow: var(--qt-shadow) !important;
+  background: var(--qt-surface) !important;
 }
+
+/* 헤더 */
 [data-testid="stDataFrame"] thead th {
-  background: rgba(0,15,8,0.80) !important;
-  color: var(--sb-gold-light) !important;
-  font-size: 0.75rem !important;
-  font-weight: 700 !important;
+  background: var(--qt-surface-3) !important;
+  color: var(--qt-text-3) !important;
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-size: 0.70rem !important;
+  font-weight: 600 !important;
   letter-spacing: 0.10em !important;
   text-transform: uppercase !important;
-  padding: 14px 16px !important;
-  border-bottom: 1px solid rgba(201,151,58,0.30) !important;
+  padding: 12px 16px !important;
+  border-bottom: 1px solid var(--qt-border-2) !important;
+  border-right: 1px solid var(--qt-border) !important;
 }
+
+/* 행 */
 [data-testid="stDataFrame"] tbody tr {
-  background: rgba(0,30,18,0.30) !important;
-  transition: background 0.15s !important;
+  background: var(--qt-surface) !important;
+  transition: background 0.12s !important;
 }
 [data-testid="stDataFrame"] tbody tr:nth-child(even) {
-  background: rgba(0,20,12,0.40) !important;
+  background: var(--qt-surface-2) !important;
 }
 [data-testid="stDataFrame"] tbody tr:hover {
-  background: rgba(201,151,58,0.12) !important;
+  background: var(--qt-green-faint) !important;
 }
+
+/* 셀 */
 [data-testid="stDataFrame"] tbody td {
-  color: var(--sb-white-80) !important;
-  font-size: 0.90rem !important;
-  padding: 12px 16px !important;
-  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+  color: var(--qt-text) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.86rem !important;
+  padding: 10px 16px !important;
+  border-bottom: 1px solid var(--qt-border) !important;
+  border-right: 1px solid var(--qt-border) !important;
+}
+
+/* 인덱스 열 */
+[data-testid="stDataFrame"] tbody td:first-child {
+  color: var(--qt-text-3) !important;
+  font-size: 0.76rem !important;
 }
 
 /* ============================================================
-   METRIC
+   METRIC WIDGETS — 틱커 스타일
    ============================================================ */
 
 [data-testid="metric-container"] {
-  background: rgba(255,255,255,0.07) !important;
-  backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(201,151,58,0.20) !important;
-  border-top: 3px solid var(--sb-gold) !important;
-  border-radius: var(--sb-radius-sm) !important;
-  padding: 20px 22px !important;
-  box-shadow: var(--sb-shadow-sm) !important;
-  transition: transform 0.22s ease, box-shadow 0.22s ease !important;
+  background: var(--qt-surface) !important;
+  border: 1px solid var(--qt-border) !important;
+  border-radius: var(--qt-radius) !important;
+  padding: 16px 20px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  box-shadow: var(--qt-shadow) !important;
+  transition: border-color 0.18s !important;
+}
+[data-testid="metric-container"]::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--qt-green);
 }
 [data-testid="metric-container"]:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: var(--sb-shadow-md) !important;
+  border-color: var(--qt-green-dim) !important;
 }
+
 [data-testid="metric-container"] label {
-  font-size: 0.75rem !important;
-  letter-spacing: 0.10em !important;
-  text-transform: uppercase !important;
-  color: var(--sb-white-55) !important;
+  font-size: 0.68rem !important;
   font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: var(--qt-text-3) !important;
 }
 [data-testid="stMetricValue"] {
-  font-family: 'Lora', Georgia, serif !important;
-  font-size: 2rem !important;
-  font-weight: 700 !important;
-  color: var(--sb-white) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 1.8rem !important;
+  font-weight: 600 !important;
+  color: var(--qt-text) !important;
+  letter-spacing: -0.02em !important;
+}
+[data-testid="stMetricDelta"] {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 0.82rem !important;
+  font-weight: 500 !important;
 }
 
 /* ============================================================
-   CHARTS
+   CHART
    ============================================================ */
 
 .plot-container,
 [data-testid="stPlotlyChart"],
 .stVegaLiteChart {
-  background: rgba(0,20,12,0.50) !important;
-  border-radius: var(--sb-radius) !important;
-  padding: 20px !important;
-  box-shadow: var(--sb-shadow-md) !important;
-  border: 1px solid rgba(201,151,58,0.15) !important;
-  backdrop-filter: blur(10px) !important;
-  margin-bottom: 20px !important;
+  background: var(--qt-surface) !important;
+  border: 1px solid var(--qt-border) !important;
+  border-radius: var(--qt-radius) !important;
+  padding: 16px !important;
+  box-shadow: var(--qt-shadow) !important;
+  margin-bottom: 16px !important;
 }
 
 /* ============================================================
@@ -368,17 +457,42 @@ input:focus, textarea:focus,
    ============================================================ */
 
 .stExpander {
-  background: rgba(255,255,255,0.06) !important;
-  border: 1px solid rgba(201,151,58,0.20) !important;
-  border-radius: var(--sb-radius) !important;
-  backdrop-filter: blur(12px) !important;
+  background: var(--qt-surface) !important;
+  border: 1px solid var(--qt-border) !important;
+  border-radius: var(--qt-radius) !important;
   overflow: hidden !important;
 }
 .stExpander > div:first-child {
-  background: rgba(0,15,8,0.40) !important;
-  padding: 14px 20px !important;
+  background: var(--qt-surface-2) !important;
+  padding: 12px 18px !important;
   font-weight: 600 !important;
-  border-bottom: 1px solid rgba(201,151,58,0.18) !important;
+  font-size: 0.82rem !important;
+  letter-spacing: 0.06em !important;
+  border-bottom: 1px solid var(--qt-border) !important;
+}
+
+/* ============================================================
+   ALERTS
+   ============================================================ */
+
+[data-baseweb="notification"] {
+  background: var(--qt-surface-2) !important;
+  border: 1px solid var(--qt-border-2) !important;
+  border-left: 3px solid var(--qt-green) !important;
+  border-radius: var(--qt-radius) !important;
+}
+
+/* ============================================================
+   PROGRESS
+   ============================================================ */
+
+.stProgress > div > div > div {
+  background: linear-gradient(90deg, var(--qt-green-dim), var(--qt-green)) !important;
+  border-radius: var(--qt-radius-pill) !important;
+}
+.stProgress > div > div {
+  background: var(--qt-surface-3) !important;
+  border-radius: var(--qt-radius-pill) !important;
 }
 
 /* ============================================================
@@ -386,77 +500,78 @@ input:focus, textarea:focus,
    ============================================================ */
 
 section[data-testid="stSidebar"] {
-  background: rgba(0,15,8,0.95) !important;
-  border-right: 1px solid rgba(201,151,58,0.20) !important;
+  background: var(--qt-surface) !important;
+  border-right: 1px solid var(--qt-border) !important;
 }
 section[data-testid="stSidebar"] h1,
 section[data-testid="stSidebar"] h2,
 section[data-testid="stSidebar"] h3 {
-  color: var(--sb-gold-light) !important;
+  color: var(--qt-green) !important;
 }
 section[data-testid="stSidebar"] .stButton > button {
-  background: rgba(201,151,58,0.15) !important;
-  border: 1px solid rgba(201,151,58,0.30) !important;
-  color: var(--sb-gold-light) !important;
+  border-color: var(--qt-border-2) !important;
+  color: var(--qt-text-2) !important;
 }
 section[data-testid="stSidebar"] .stButton > button:hover {
-  background: rgba(201,151,58,0.28) !important;
-}
-
-/* ============================================================
-   PROGRESS / ALERTS
-   ============================================================ */
-
-.stProgress > div > div > div {
-  background: linear-gradient(90deg, var(--sb-forest-light), var(--sb-gold)) !important;
-  border-radius: var(--sb-radius-pill) !important;
-}
-[data-baseweb="notification"] {
-  background: rgba(45,155,107,0.18) !important;
-  border-left: 4px solid var(--sb-forest-light) !important;
+  border-color: var(--qt-green-dim) !important;
+  color: var(--qt-green) !important;
 }
 
 /* ============================================================
    SCROLLBAR
    ============================================================ */
 
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: rgba(0,20,12,0.40); }
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--qt-surface); }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--sb-forest-light), var(--sb-gold));
-  border-radius: var(--sb-radius-pill);
+  background: var(--qt-border-2);
+  border-radius: var(--qt-radius-pill);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--qt-green-dim);
 }
 
 ::selection {
-  background: rgba(201,151,58,0.35);
-  color: #ffffff;
+  background: rgba(0,230,118,0.20);
+  color: var(--qt-green);
+}
+
+/* ============================================================
+   TICKER TAPE — 상단 데이터 스트립 느낌
+   ============================================================ */
+
+/* 숫자 데이터는 모노스페이스 */
+[data-testid="stDataFrame"] td,
+[data-testid="stMetricValue"],
+.stNumberInput input {
+  font-family: 'JetBrains Mono', monospace !important;
 }
 
 /* ============================================================
    ANIMATIONS
    ============================================================ */
 
-@keyframes fadeSlideUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0);    }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+
 .element-container {
-  animation: fadeSlideUp 0.40s cubic-bezier(.22,.68,0,1) both;
+  animation: fadeIn 0.30s ease both;
 }
-.element-container:nth-child(1)  { animation-delay: 0.04s; }
-.element-container:nth-child(2)  { animation-delay: 0.08s; }
-.element-container:nth-child(3)  { animation-delay: 0.12s; }
-.element-container:nth-child(4)  { animation-delay: 0.16s; }
-.element-container:nth-child(5)  { animation-delay: 0.20s; }
-.element-container:nth-child(6)  { animation-delay: 0.24s; }
-.element-container:nth-child(n+7){ animation-delay: 0.28s; }
+.element-container:nth-child(1)  { animation-delay: 0.03s; }
+.element-container:nth-child(2)  { animation-delay: 0.06s; }
+.element-container:nth-child(3)  { animation-delay: 0.09s; }
+.element-container:nth-child(4)  { animation-delay: 0.12s; }
+.element-container:nth-child(5)  { animation-delay: 0.15s; }
+.element-container:nth-child(6)  { animation-delay: 0.18s; }
+.element-container:nth-child(n+7){ animation-delay: 0.20s; }
 
 /* ============================================================
    RESPONSIVE
    ============================================================ */
 
 @media (max-width: 768px) {
-  .block-container { padding: 1.2rem 1rem !important; }
-  h1 { font-size: 1.75rem !important; }
-  h2 { font-size: 1.15rem !important; }
+  .block-container { padding: 1rem !important; }
+  h1 { font-size: 1.3rem !important; }
 }
