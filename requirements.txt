@@ -10,3 +10,4 @@ tqdm
 requests
 openpyxl
 mplfinance
+FinanceDataReader
